@@ -133,9 +133,7 @@ variable "port" {
 variable "vpc_security_group_ids" {
   description = "List of VPC security groups to associate"
   type        = list(string)
-  default     = [
-    "sg-0ea5b4c744a70e2d7"
-  ]
+  default     = [ ]
 }
 
 variable "availability_zone" {
@@ -159,7 +157,7 @@ variable "iops" {
 variable "publicly_accessible" {
   description = "Bool to control if instance is publicly accessible"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "monitoring_interval" {
@@ -299,9 +297,9 @@ variable "subnet_ids" {
   description = "A list of VPC subnet IDs"
   type        = list(string)
   default     = [
-    "subnet-00a6b89e056b245a3",
-    "subnet-0f4b6bd81c250de72",
-    "subnet-0002bbc59a5ee5e2d"
+    "subnet-0648165c6cb6f23e5",
+    "subnet-0c6d09930ac8d6be6",
+    "subnet-09576884b6e657534"
   ]
 }
 
