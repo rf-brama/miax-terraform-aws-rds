@@ -295,16 +295,6 @@ variable "db_subnet_group_description" {
   default     = null
 }
 
-variable "subnet_ids" {
-  description = "A list of VPC subnet IDs"
-  type        = list(string)
-  default     = [
-    "subnet-0648165c6cb6f23e5",
-    "subnet-0c6d09930ac8d6be6",
-    "subnet-09576884b6e657534"
-  ]
-}
-
 # DB parameter group
 variable "create_db_parameter_group" {
   description = "Whether to create a database parameter group"
