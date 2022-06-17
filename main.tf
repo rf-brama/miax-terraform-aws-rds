@@ -9,6 +9,15 @@ locals {
   option_group           = local.create_db_option_group ? module.db_option_group.db_option_group_id : var.option_group_name
 }
 
+data "terraform_remote_state" "remote" {
+  backend = "s3"
+  config = {
+    bucket = "miax-state-files"
+    key = "VPC/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 resource "random_password" "master_password" {
   count = local.create_random_password ? 1 : 0
 
@@ -24,7 +33,7 @@ module "db_subnet_group" {
   name            = coalesce(var.db_subnet_group_name, var.identifier)
   use_name_prefix = var.db_subnet_group_use_name_prefix
   description     = var.db_subnet_group_description
-  subnet_ids      = var.subnet_ids
+  subnet_ids      = "${data.terraform_remote_state.remote.outputs.module_vpc3_private_subnets}"
 
   tags = merge(var.tags, var.db_subnet_group_tags)
 }
